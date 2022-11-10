@@ -7,16 +7,17 @@
 <body>
     <input type="number" id="inputX">X</input>
     <input type="number" id="inputY">Y</input>
+    <input type="number" id="nMinas">nº Minas</input>
     <button type="button" onclick="createTable()">Crea tabla</button>
-    <button type="button" onclick="paintCheckerboard()"> paintCheckerboard</button>
-    <button type="button" onclick="paintAll()"> paint all</button>
+    <button type="button" onclick="inicialitzaMines()">Inicializa minas</button>
+    
     <div>
         <table style="width: 12%;" border="1">
             <tbody id="table">
-
             </tbody>
         </table>
     </div>
+
     <script src="buscaminas.js"></script>
 </body>
 </html>
