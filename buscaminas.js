@@ -3,31 +3,39 @@ let rows = document.querySelector("tbody").children
 for (var i = 0; i < rows.length; i++) {
     matrix.push(rows[i].children)
 }
-
 let minas = [];
 
-
-
 function createTable (){
-        let rows = document.getElementById("inputX").valueAsNumber;
-        let columns = document.getElementById("inputY").valueAsNumber;
+    let rows = document.getElementById("inputX").valueAsNumber;
+    let columns = document.getElementById("inputY").valueAsNumber;
+    let body = document.getElementsByTagName("body")[0];
+    let divv = document.createElement("div");
+    let table = document.createElement("table");
+    let tbody = document.createElement("tbody");
+    
+
+    for (let i = 0; i < columns; i++) {
+        let filaActual = document.createElement("tr");
         
-
-        for (let i = 0; i < columns; i++) {
-            let filaActual = document.getElementById('table').insertRow(i);
-            
-            for (let j = 0; j < rows; j++) {
-                let celda = filaActual.insertCell(j);
-
-                celda.innerHTML = "&nbsp";
-            }
+        for (let j = 0; j < rows; j++) {
+            let celda = document.createElement("td");
+            filaActual.appendChild(celda);
+            celda.style.border = "1px solid";
+            celda.style.width = "12%";
+            celda.innerHTML = "&nbsp";
+          //  celda.setAttribute("id",  j + " " + i);
         }
+    tbody.appendChild(filaActual);
+    }
+    table.appendChild(tbody);
+    divv.appendChild(table);
+    body.appendChild(divv);
 
-        rows = document.querySelector("tbody").children
-        for (var i = 0; i < rows.length; i++) {
-            matrix.push(rows[i].children);
-        }
-       // document.getElementById('table').style.border="1";
+
+    rows = document.querySelector("tbody").children
+    for (var i = 0; i < rows.length; i++) {
+        matrix.push(rows[i].children);
+    }
 }
 
 function matriuBinaria(matrix) {
