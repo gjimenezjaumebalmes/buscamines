@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-<html>
-BUSCAMINES
+<html lang="en">
 <head>
-
-    <title>Buscamines GUILLEM</title>
     <meta charset="UTF-8">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-<!-- LABELS  COORDENADES -->
-<b><p>
-<label for="x">Coordenada x:</label>
+<h1>BUSCAMINES</h1>
+<!--Crear la cuadricula-->
+<input type="number" id="X">
+<input type="number" id="Y">
+<button type="button" onclick="CreaTaula()">Crear taula</button>
+<!--Posar mines-->
+<P>
+<input type="number" id="NumeroMines">
+<button type="button" onclick="inicialitzaMines()">Ficar mines</button>
+<div id="taulell">
 
-<input type="number" id="cx" name="x"><br><br>
-
-<label for="y">Coordenada y:</label>
-
-<input type="number" id="cy" name="y"><br><br>
-
-
-
-<div id="ontaula"></div>
-<button type="button" onclick="startJoc()">START GAME</button><br><br>
-
+</div>
 </body>
-<script src="buscamines.js"></script>
+<script src="buscamines.js">
+</script>
 </html>
