@@ -47,6 +47,18 @@ function CreaTaula() {
 
 let mina = [];
 
+/*
+# Exercici 1
+
+Feu una funció anomenada `inicialitzaMines`  que l'hi passis els paràmetres:
+
+- nMines: nombre de mines
+- midaX: Mida de la matriu horitzontal.
+- midaY: Mida de la matriu vertical
+
+i  **retorni** una matriu de `midaX` per `midaY` amb tantes mines com indicades pel paràmetre `nMines` posades de manera aleatòria.
+*/
+
 //Creem la funció inicialitzaMines
 function inicialitzaMines() {
     let numMines = 0;
@@ -68,6 +80,10 @@ function inicialitzaMines() {
             numMines++;
         }
     }
+/*
+    # Exercici 3
+
+    Poseu un color diferent a les cel·les que continguin mines per tal de visualitzar que funcioni correctament.*/
     for (let a = 0; a < X; a++) {
         for (let b = 0; b < Y; b++) {
             if (mina[a][b] == 1) {
