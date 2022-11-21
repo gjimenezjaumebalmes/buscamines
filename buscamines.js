@@ -3,8 +3,13 @@ let matrix = [];
 
 var body = document.getElementsByTagName("body")[0];
 body.style.backgroundColor = "white"; //Color de fons de pantalla
-//Creem la funció creataula
-function CreaTaula() {
+//Creem la funció inicialitzaJoc
+/*
+Exercici 1
+
+Crea una funció anomenada inicialitzaJoc associada amb un botó; de tal manera que quan premis el botó es creï una taula amb les dimensions especificades en els inputs.
+*/
+function inicialitzaJoc() {
     /*// Generem les variables x - y*/
     let x = document.getElementById("X").valueAsNumber;
     let y = document.getElementById("Y").valueAsNumber;
@@ -45,66 +50,49 @@ function CreaTaula() {
     tblBody.addEventListener("click", coordenadas);
 }
 
-let mina = [];
-
-/*
-# Exercici 1
-
-Feu una funció anomenada `inicialitzaMines`  que l'hi passis els paràmetres:
-
-- nMines: nombre de mines
-- midaX: Mida de la matriu horitzontal.
-- midaY: Mida de la matriu vertical
-
-i  **retorni** una matriu de `midaX` per `midaY` amb tantes mines com indicades pel paràmetre `nMines` posades de manera aleatòria.
-*/
-
-//Creem la funció inicialitzaMines
-function inicialitzaMines() {
-    let numMines = 0;
-    let nMines = document.getElementById("NumeroMines").valueAsNumber;
-    let X = document.getElementById("X").valueAsNumber;
-    let Y = document.getElementById("Y").valueAsNumber;
-    for (let a = 0; a < X; a++) {
-        mina[a] = [];
-        for (let b = 0; b < Y; b++) {
-            mina[a][b] = 0;
+function paintAll() {
+    for (let i =0; i < matrix.length ; i++) { // files
+        for (let j = 0; j < matrix[i].length ;j++ ) { // columnes
+            matrix[i][j].style.backgroundColor = "red";
         }
     }
-    //Bucle while que genera aleatoriament la posició de les mines.
-    while (numMines < nMines){
-        let fila = Math.floor(Math.random() * Y);
-        let columna = Math.floor(Math.random() * X);
-        if (mina[fila][columna] == 0){
-            mina[fila][columna] = 1;
-            numMines++;
+}
+
+
+function paintCheckerboard() {
+
+    for (let i = 0; i < matrix.length; i+=2) {
+        for (let j = 0; j < matrix[i].length; j+=2) {
+
+            matrix[i][j].style.backgroundColor = "red";
         }
     }
-/*
-    # Exercici 3
-
-    Poseu un color diferent a les cel·les que continguin mines per tal de visualitzar que funcioni correctament.*/
-    for (let a = 0; a < X; a++) {
-        for (let b = 0; b < Y; b++) {
-            if (mina[a][b] == 1) {
-                matrix[a][b].style.backgroundColor = "red"; //Color de les mines
-            }
+    for (let y = 1; y < matrix.length; y+=2) {
+        for (let e = 1; e < matrix[y].length; e+=2) {
+            matrix[y][e].style.backgroundColor = "red";
         }
+    }
+    let rows = document.querySelector("tbody").children
+
+    for (var i = 0; i < rows.length; i++) {
+        matrix.push(rows[i].children)
     }
 
 }
-//Generem la funcio coordenades
-function coordenadas(event) {
-    let x = event.target.id.split(' ')[1];
-    let y = event.target.id.split(' ')[0];
 
-    if (event.target.tagName == "TD") {
-        console.log(event.target.id);
+/*Exercici 2*/
+function matriuBinaria(matrix) {
+    var matrix2 = [];
+    for (var i = 0; i < matrix.length; i++) {
+        var fila = [];
+        for (var j = 0; j < matrix[0].length; j++) {
+            if (matrix[i][j].style.backgroundColor == "red") { //Pintem els 0 de vermell
+                fila.push(1);
+            } else {
+                fila.push(0);
+            }
+        }
+        matrix2.push(fila);
     }
-    if (mina[x][y] == 1) {
-        return alert("MINA");
-    }
-    else {
-        return console.log("SALVAT");
-    }
+    return matrix2;
 }
