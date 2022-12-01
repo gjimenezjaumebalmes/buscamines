@@ -1,63 +1,82 @@
-var columna;
 let matrix = [];
 
-var body = document.getElementsByTagName("body")[0];
-body.style.backgroundColor = "white"; //Color de fons de pantalla
 //Creem la funció creataula
-function CreaTaula() {
-    /*// Generem les variables x - y*/
-    let x = document.getElementById("X").valueAsNumber;
-    let y = document.getElementById("Y").valueAsNumber;
-    /*Generem les variables tabla tblBody*/
-    var tabla = document.createElement("table");
-    var tblBody = document.createElement("tbody");
+function creataula (){
+    let rows = document.getElementById("inputX").valueAsNumber;
+    let columns = document.getElementById("inputY").valueAsNumber;
+    let div = document.getElementById("idDIV");
+    let table = document.createElement("table");
+    let tbody = document.createElement("tbody");
     /*Bucle for on generem la taula*/
-    for (var i = 0; i < y; i++) {
-        var fila = document.createElement("tr");
-        for (var j = 0; j < x; j++) {
-        /*Especifiquem els valors de la taula , color , mida de la cuadricula*/
-            columna = document.createElement("TD");
-            columna.textContent = ' ';
-            columna.style.border = "2x solid"; //mida del cuadrat
-            columna.style.color = "grey"; //color
-            columna.style.width = "50px"; //alçada
-            columna.style.height = "50px"; //allargada
-            columna.setAttribute("id",  j + " " + i);
-
-            fila.appendChild(columna);
+    for (let i = 0; i < columns; i++) {
+        let fila = document.createElement("tr"); // Es crea la fila
+        for (let j = 0; j < rows; j++) {
+            let celda = document.createElement("td");  // Es crea la cela
+            celda.style.border = "2px solid";  //mida del cuadrat
+            celda.style.width = "50px";
+            celda.style.height = "50px";
+            celda.style.color = "black"; //color
+            celda.style.textAlign = "center";
+            celda.style.fontWeight = "bold";
+            celda.textContent = ' ';
+            celda.style.color = "c7c7c7"; //color
+            celda.setAttribute("id", j);
+            celda.setAttribute("class", i);
+            fila.appendChild(celda);
         }
-        tblBody.appendChild(fila);
+
+        tbody.appendChild(fila);
     }
 
-    tabla.appendChild(tblBody);
-
-    body.appendChild(tabla);
+    table.appendChild(tbody);
+    div.appendChild(table);
     //Color de fons de la cuadricula
-    tblBody.style.backgroundColor = "grey";
+    tbody.style.backgroundColor = "grey";
     //Posició de la cuadricula
-    tabla.style.marginLeft = "220px";
-
-    let rows = document.querySelector("tbody").children
+    table.style.marginLeft = "220px";
+    rows = document.querySelector("tbody").children
     //Bucle generador
     for (var i = 0; i < rows.length; i++) {
-        matrix.push(rows[i].children)
+        matrix.push(rows[i].children);
     }
-    tblBody.addEventListener("click", coordenadas);
+
+    tbody.addEventListener("click", minesdelcostat);
+
+    for (let i = 0; i < columns; i++) {
+        mines[i] = [];
+        for (let j = 0; j < rows; j++) {
+            mines[i][j] = 0;
+        }
+    }
+}
+
+function matriuBinaria(matrix) {
+    let matrix2 = []
+    for (var i = 0; i < matrix.length; i++) {
+        let rows = [];
+        for (var j = 0; j < matrix[0].length; j++) {
+            if (matrix[i][j].style.backgroundColor == "red") {
+                rows.push(1);
+            }
+            else {
+                rows.push(0);
+            }
+        }
+        matrix2.push(rows);
+    }
+    return matrix2;
 }
 
 
-//Generem la funcio coordenades
-function coordenadas(event) {
-    let x = event.target.id.split(' ')[1];
-    let y = event.target.id.split(' ')[0];
-
+function coordenadaCelda(event) {
     if (event.target.tagName == "TD") {
         console.log(event.target.id);
     }
-    if (mina[x][y] == 1) {
-        return alert("MINA");
+    if (mines[event.target.id[2]][event.target.id[0]] == 1) {
+        return console.log("HAY MINA");
     }
     else {
-        return console.log("SALVAT");
+        return console.log("NO HAY MINA");
     }
+
 }
