@@ -45,54 +45,7 @@ function CreaTaula() {
     tblBody.addEventListener("click", coordenadas);
 }
 
-let mina = [];
 
-/*
-# Exercici 1
-
-Feu una funció anomenada `inicialitzaMines`  que l'hi passis els paràmetres:
-
-- nMines: nombre de mines
-- midaX: Mida de la matriu horitzontal.
-- midaY: Mida de la matriu vertical
-
-i  **retorni** una matriu de `midaX` per `midaY` amb tantes mines com indicades pel paràmetre `nMines` posades de manera aleatòria.
-*/
-
-//Creem la funció inicialitzaMines
-function inicialitzaMines() {
-    let numMines = 0;
-    let nMines = document.getElementById("NumeroMines").valueAsNumber;
-    let X = document.getElementById("X").valueAsNumber;
-    let Y = document.getElementById("Y").valueAsNumber;
-    for (let a = 0; a < X; a++) {
-        mina[a] = [];
-        for (let b = 0; b < Y; b++) {
-            mina[a][b] = 0;
-        }
-    }
-    //Bucle while que genera aleatoriament la posició de les mines.
-    while (numMines < nMines){
-        let fila = Math.floor(Math.random() * Y);
-        let columna = Math.floor(Math.random() * X);
-        if (mina[fila][columna] == 0){
-            mina[fila][columna] = 1;
-            numMines++;
-        }
-    }
-/*
-    # Exercici 3
-
-    Poseu un color diferent a les cel·les que continguin mines per tal de visualitzar que funcioni correctament.*/
-    for (let a = 0; a < X; a++) {
-        for (let b = 0; b < Y; b++) {
-            if (mina[a][b] == 1) {
-                matrix[a][b].style.backgroundColor = "red"; //Color de les mines
-            }
-        }
-    }
-
-}
 //Generem la funcio coordenades
 function coordenadas(event) {
     let x = event.target.id.split(' ')[1];
