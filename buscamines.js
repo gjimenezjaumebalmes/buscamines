@@ -1,9 +1,6 @@
-
-
-
 // Matrius
 //----------------------------------------
-// matriu per la tarde
+// matriu per la taula
 let matrix = [];
 // matriu per les mines
 let mines = [];
@@ -12,7 +9,34 @@ let flags = [];
 //----------------------------------------
 // variable mines repartides
 let minesdistributed = 0;
+// Variables de temps
+let intervaltemps;
+let minutes;
+let seconds;
+//----------------------------------------
+// Funció comptar temps
+//----------------------------------------
+function comptatemps() {
+    let countDownDate = new Date();
+    if (countDownDate) {
+        countDownDate = new Date(countDownDate);
+    } else {
+        countDownDate = new Date();
+        localStorage.setItem('startDate', countDownDate);
+    }
 
+    // Actualitzem el contador de temps
+    intervaltemps = setInterval(function () {
+        // Add date
+        let now = new Date().getTime();
+        let distance = now - countDownDate.getTime();
+        // Passem el temps de milisegons a minuts i segons
+        minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("comptatemps").innerHTML = minutes + "m " + seconds + "s ";
+    }, 1000);
+
+}
 //----------------------------------------
 // Funció createtable " Crear taula "
 //----------------------------------------
@@ -22,6 +46,10 @@ function createTable () {
     let div = document.getElementById("idDIV");
     let table = document.createElement("table");
     let tbody = document.createElement("tbody");
+    document.getElementById("comptatemps").style.display = "inline";
+    document.getElementById("tempsfinal").style.display = "none";
+    //Resetegem el temps i el tornem a començar
+    comptatemps();
     for (let i = 0; i < columns; i++) {
         let fila = document.createElement("tr"); // Es crea la fila
         for (let j = 0; j < rows; j++) {
@@ -260,6 +288,7 @@ function win() {
 // Funcio Desactivar Joc
 //----------------------------------------
 function disableGameWin() {
+    clearInterval(intervaltemps);
     let rows = document.getElementById("inputX").valueAsNumber;
     let columns = document.getElementById("inputY").valueAsNumber;
     for (let i = 0; i < columns; i++) {
@@ -301,6 +330,7 @@ function lost() {
 // Funcio desactivar joc perdut
 //----------------------------------------
 function DisableGameLost() {
+    clearInterval(intervaltemps);
     let rows = document.getElementById("inputX").valueAsNumber;
     let columns = document.getElementById("inputY").valueAsNumber;
     for (let i = 0; i < columns; i++) {
@@ -319,5 +349,7 @@ function DisableGameLost() {
                 matrix[i][j].removeEventListener("contextmenu", putflag, false);
             }
         }
+
     }
+
 }
