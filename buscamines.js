@@ -1,6 +1,7 @@
+
 // Matrius
 //----------------------------------------
-// matriu per la taula
+// matriu per la tarde
 let matrix = [];
 // matriu per les mines
 let mines = [];
@@ -29,10 +30,12 @@ function comptatemps() {
     intervaltemps = setInterval(function () {
         // Add date
         let now = new Date().getTime();
+        // Agafem la diferencia entre el temps actual i el temps de quan hem fet clic al boto
         let distance = now - countDownDate.getTime();
         // Passem el temps de milisegons a minuts i segons
         minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Fiquem els minuts i segons dins el html
         document.getElementById("comptatemps").innerHTML = minutes + "m " + seconds + "s ";
     }, 1000);
 
