@@ -1,104 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="EN">
 <head>
 	<meta charset="utf-8">
-	<title>Buscaminas</title>
+	<title>Buscamines</title>
     <link rel="shortcut icon" href="img/bomba.png">
-    <style type="text/css">
-        html {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-        body {
-            padding: 1%;
-        }
-        #hasPerdido {
-            background-color: red;
+    <style >
+/*PINTAR MISSATGE DE PERDRE*/
+        #lost {
+            background-color: white;
             text-align: center;
             padding-top: 15px;
             padding-bottom: 15px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            border-radius: 15px;
             display: none;
        
         }
-        #hasGanado {
+/*PINTAR MISSATGE DE GUANYAR*/
+        #win {
             background-color: lightgreen;
             text-align: center;
             padding-top: 15px;
             padding-bottom: 15px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
             display: none;
-            border-radius: 5px;
         }
 
-        .inputValues {
-            display: flex;
-            width: 100%;
-        }
-        .textBox {
-            display: flex;
-            align-items: center;
-        }
-        .textBox > p {
-            background-color: black;
-            font-weight: bold;
-            color: white;
-            padding: 5px 10px 5px 10px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            white-space: pre;
-            border-radius: 5px;
-            z-index: 1;
-        }
-        .textBox > input {
-            border: 2.5px solid black;
-            border-radius: 0px 5px 5px 0px;
-            width: 40%;
-            margin-left: -3px;
-            font-size: 1.05em;
-            font-weight: bold;
-            text-align: right;
-        }
-        .textBox:last-child > input{
-            border: 2.5px solid black;
-            border-radius: 0px 5px 5px 0px;
-            width: 30%;
-            margin-left: -3px;
-        }
-        .buttons {
-            background-color: black; 
-            color: whitesmoke; 
-            margin-bottom: 2%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            border-radius: 5px;
-            font-size: 1.1em;
-            padding: 5px 10px 5px 10px;
-        }
+
     </style>
 </head>
 <body>
     <div class="inputValues">
         <div class="textBox">
             <p> X </p>
-            <input type="number" id="inputX" ></input>
+        <!--  Posar x -->
+            <label for="inputX"></label><input type="number" id="inputX" >
         </div>
         <div class="textBox">
             <p> Y </p>
-            <input type="number" id="inputY" ></input>
+        <!--  Posar y -->
+            <label for="inputY"></label><input type="number" id="inputY" >
         </div>
         <div class="textBox">
-            <p>NÚMERO DE MINAS</p>
-            <input type="number" id="nMinas" ></input>
+            <p>NÚMERO DE MINES</p>
+        <!--  Numero de mines -->
+            <label for="numberMines"></label><input type="number" id="numberMines" >
         </div>
     </div>
-    
-    <button type="button" onclick="createTable()" class="buttons">Crea tabla</button> 
-    <button type="button" onclick="inicialitzaMines()" class="buttons">Inicializa minas</button>
-    <button type="button" onclick="inicializaJuego()" class="buttons"><b>Inicializar juego</b></button>
+    <p>
+        <!--  Buto de crear taula -->
+    <button type="button" onclick="createTable()" class="buttons">Crear taula</button>
+    <p>
+        <!--  Buto de ficar mines -->
+    <button type="button" onclick="startmines()" class="buttons">Inicialitzar mines</button>
+    <p>
+        <!--  Buto de començar el joc -->
+    <button type="button" onclick="startgame()" class="buttons"><b>Inicialitzar joc</b></button>
+    <p>
     <div id="idDIV">
     </div>
-    <h2 id="hasPerdido">¡BOMBA! HAS PERDIDO</h2>
-    <h2 id="hasGanado">¡BOMBAS NEUTRALIZADAS! HAS GANADO</h2>
-  
-    <script src="buscaminas.js"></script>
+    <!--  Missatge de has perdut -->
+    <h2 id="lost">HAS PERDUT</h2>
+    <!--  Missatge de has guanyat -->
+    <h2 id="win">HAS GUANYAT</h2>
+    <!--  Buto resetejar joc -->
+   <div> <button onClick="window.location.href=window.location.href">Reset JOC</button></div>
+    <!--  buscamines.js -->
+    <script src="buscamines.js"></script>
 </body>
 </html>
