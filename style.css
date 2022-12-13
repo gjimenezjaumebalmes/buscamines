@@ -1,0 +1,17 @@
+    /*PINTAR MISSATGE DE PERDRE*/
+#lost {
+    background-color: white;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: none;
+
+}
+/*PINTAR MISSATGE DE GUANYAR*/
+#win {
+    background-color: lightgreen;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: none;
+}
